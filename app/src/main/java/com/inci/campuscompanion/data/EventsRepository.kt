@@ -50,9 +50,9 @@ class EventsRepository(private val remote: EventsRemoteDataSource) {
 }
 object AppContainer {
  const val BASE_URL = "https://6ad70838f71f154ac4879fac.mockapi.io/api/v1/events/"
- fun createApi(baseUrl: String = BASE_URL): CampusApi = Retrofit.Builder()
+ fun createApi(baseUrl: String = BASE_URL, client: OkHttpClient? = null): CampusApi = Retrofit.Builder()
   .baseUrl(baseUrl)
-  .client(OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS).callTimeout(30, TimeUnit.SECONDS).build())
+  .client(client ?: OkHttpClient.Builder().connectTimeout(15, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS).callTimeout(30, TimeUnit.SECONDS).build())
   .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()))
   .build().create(CampusApi::class.java)
  val repository by lazy { EventsRepository(EventsRemoteDataSource(createApi())) }

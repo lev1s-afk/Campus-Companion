@@ -11,8 +11,10 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventsScreen(state: EventsUiState, onRefresh: () -> Unit) {
- Scaffold(topBar = { TopAppBar(title = { Text("Campus Events") }, actions = {
+fun EventsScreen(state: EventsUiState, onRefresh: () -> Unit, onBack: () -> Unit = {}) {
+ Scaffold(topBar = { TopAppBar(title = { Text("Campus Events") }, navigationIcon = {
+  TextButton(onClick = onBack) { Text("Back") }
+ }, actions = {
   TextButton(onClick = onRefresh, enabled = state !is EventsUiState.Loading) { Text("Refresh") }
  }) }) { padding ->
   Box(Modifier.fillMaxSize().padding(padding)) {
