@@ -30,6 +30,10 @@ class WorkshopEvidenceTest {
     private val instrumentation get() = InstrumentationRegistry.getInstrumentation()
 
     private fun evidence(name: String, result: String) {
+        compose.waitForIdle()
+        instrumentation.waitForIdleSync()
+        // Semantics can update before SurfaceFlinger presents the new frame.
+        Thread.sleep(600)
         val dir = File(instrumentation.targetContext.getExternalFilesDir(null), "failure-evidence")
         dir.mkdirs()
         checkNotNull(instrumentation.uiAutomation.takeScreenshot()) { "Screenshot capture failed" }.useBitmap { bitmap ->

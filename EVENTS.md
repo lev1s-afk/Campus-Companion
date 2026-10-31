@@ -50,7 +50,7 @@ The tests save PNG screenshots and result logs to the app's external `files/fail
 ### Verified 31 October 2026
 
 - Debug app and Android test APKs built successfully; 8 unit tests passed (7 events tests and the existing example test).
-- All 4 `WorkshopEvidenceTest` instrumented tests passed on Pixel 9, API 37, in 59.919 seconds.
+- All 4 `WorkshopEvidenceTest` instrumented tests passed on Pixel 9, API 37, in 71.219 seconds.
 - Invalid base URL: HTTP 404 produced a visible Error and Retry; restoring the valid client and selecting Retry displayed 50 events.
 - Empty HTTPS JSON array: the deliberate No events yet message and Refresh action were visible.
 - Disabling emulator Wi-Fi and mobile data followed by Refresh produced a connection Error without a crash. Re-enabling both and selecting Retry displayed 50 events.
